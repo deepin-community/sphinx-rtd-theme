@@ -1,0 +1,2 @@
+# Necessary because the underscores in the package name seem to confuse the Debian helper.
+usr/lib/python3*

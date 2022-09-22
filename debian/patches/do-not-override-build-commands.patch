@@ -1,0 +1,22 @@
+From: Dmitry Shachnev <mitya57@debian.org>
+Date: Sun, 23 Aug 2020 18:04:51 +0300
+Subject: Do not override Python build commands
+
+We do not use webpack in debian packaging.
+---
+ setup.py | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index 1bd966f..428e090 100644
+--- a/setup.py
++++ b/setup.py
+@@ -97,8 +97,6 @@ setup(
+     cmdclass={
+         'update_translations': UpdateTranslationsCommand,
+         'transifex': TransifexCommand,
+-        'build_assets': WebpackBuildCommand,
+-        'watch': WebpackDevelopCommand,
+     },
+     zip_safe=False,
+     packages=['sphinx_rtd_theme'],

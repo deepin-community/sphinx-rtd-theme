@@ -1,0 +1,6 @@
+fonts-only-ttf-woff2.patch
+tests-configuration.patch
+replace-webpack-imports.patch
+do-not-override-build-commands.patch
+remove-html5shiv.patch
+fix-indentation-error.patch

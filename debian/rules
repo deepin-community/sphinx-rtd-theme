@@ -1,0 +1,56 @@
+#!/usr/bin/make -f
+
+export LC_ALL=C.UTF-8
+
+SASS_OPTIONS := --load-path debian/missing-sources/bourbon/app/assets/stylesheets \
+                --load-path debian/missing-sources/bourbon-neat/app/assets/stylesheets \
+                --load-path /usr/share/sass/font-awesome \
+                --load-path debian/missing-sources/wyrm/sass \
+                --style compressed \
+                --sourcemap=none
+
+COMMON_PATH = debian/sphinx-rtd-theme-common/usr/share/sphinx_rtd_theme
+PY3_PATH = debian/python3-sphinx-rtd-theme/usr/lib/python3/dist-packages/sphinx_rtd_theme
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+
+override_dh_auto_build:
+	mkdir -p sphinx_rtd_theme/static/css
+	sass $(SASS_OPTIONS) src/sass/theme.sass      sphinx_rtd_theme/static/css/theme.css
+	sass $(SASS_OPTIONS) src/sass/badge_only.sass sphinx_rtd_theme/static/css/badge_only.css
+	mkdir -p sphinx_rtd_theme/static/js
+	sed s/module.exports.ThemeNav/_ThemeNav/ src/theme.js > sphinx_rtd_theme/static/js/theme.js
+	mkdir -p sphinx_rtd_theme/static/fonts
+	cp /usr/share/fonts/truetype/lato/Lato-Bold.ttf sphinx_rtd_theme/static/fonts/
+	cp /usr/share/fonts/truetype/lato/Lato-BoldItalic.ttf sphinx_rtd_theme/static/fonts/
+	cp /usr/share/fonts/truetype/lato/Lato-Italic.ttf sphinx_rtd_theme/static/fonts/
+	cp /usr/share/fonts/truetype/lato/Lato-Regular.ttf sphinx_rtd_theme/static/fonts/
+	cp /usr/share/fonts/opentype/roboto/slab/RobotoSlab-Bold.otf sphinx_rtd_theme/static/fonts/
+	cp /usr/share/fonts/opentype/roboto/slab/RobotoSlab-Regular.otf sphinx_rtd_theme/static/fonts/
+	set -ex; cd sphinx_rtd_theme/static/fonts/; for ttf in *.ttf; do woff2_compress $$ttf; done
+	set -ex; cd sphinx_rtd_theme/static/fonts/; for otf in *.otf; do woff2_compress $$otf; done
+	rm -fv sphinx_rtd_theme/static/fonts/*.otf
+	python3 setup.py compile_catalog
+	dh_auto_build
+
+override_dh_link:
+	dh_link -p sphinx-rtd-theme-common
+	rm -rf $(PY3_PATH)/static
+	set -ex; for d in static/css static/fonts static/js; do \
+		mkdir -p $(PY3_PATH)/$$d; \
+	done
+	set -ex; for f in `cd $(COMMON_PATH) && find -type f -or -type l | sed "s,^\./,,"`; do \
+		ln -sf /usr/share/sphinx_rtd_theme/$$f $(PY3_PATH)/$$f; \
+	done
+	dh_link --remaining-packages  # To make the created symlinks relative
+	# Dummy empty files, to make sure that packages built against older
+	# sphinx-rtd-theme do not have dangling symlinks after upgrade.
+	# RobotoSlab-*.ttf: used up to version 0.4.3+dfsg-1, present in Stretch and Buster.
+	touch debian/sphinx-rtd-theme-common/usr/share/sphinx_rtd_theme/static/fonts/RobotoSlab-Bold.ttf
+	touch debian/sphinx-rtd-theme-common/usr/share/sphinx_rtd_theme/static/fonts/RobotoSlab-Regular.ttf
+	# modernizr.min.js: used up to version 0.4.3+dfsg-3, present in Stretch and Buster.
+	touch debian/sphinx-rtd-theme-common/usr/share/sphinx_rtd_theme/static/js/modernizr.min.js
+	# html5shiv*.js: used only in version 0.5.0+dfsg-1, not present in any stable release.
+	touch debian/sphinx-rtd-theme-common/usr/share/sphinx_rtd_theme/static/js/html5shiv-printshiv.min.js
+	touch debian/sphinx-rtd-theme-common/usr/share/sphinx_rtd_theme/static/js/html5shiv.min.js

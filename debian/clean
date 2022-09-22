@@ -1,0 +1,6 @@
+.gitattributes
+.pytest_cache/
+.sass-cache/
+docs/make.bat
+sphinx_rtd_theme.egg-info/
+sphinx_rtd_theme/static/

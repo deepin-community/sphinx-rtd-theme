@@ -1,0 +1,4 @@
+version=4
+opts=dversionmangle=s/\+dfsg//,repacksuffix=+dfsg \
+https://github.com/readthedocs/sphinx_rtd_theme/releases \
+    /readthedocs/sphinx_rtd_theme/archive/refs/tags/([\d.]+)\.tar\.gz

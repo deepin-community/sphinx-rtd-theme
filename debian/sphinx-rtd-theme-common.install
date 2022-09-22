@@ -1,0 +1,3 @@
+sphinx_rtd_theme/*.html usr/share/sphinx_rtd_theme/
+sphinx_rtd_theme/static usr/share/sphinx_rtd_theme/
+sphinx_rtd_theme/theme.conf usr/share/sphinx_rtd_theme/

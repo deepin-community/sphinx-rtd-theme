@@ -1,0 +1,47 @@
+Source: sphinx-rtd-theme
+Section: python
+Priority: optional
+Maintainer: Debian Python Team <team+python@tracker.debian.org>
+Uploaders: Dmitry Shachnev <mitya57@debian.org>
+Build-Depends: debhelper-compat (= 13),
+               dh-python,
+               fonts-font-awesome,
+               fonts-lato,
+               fonts-roboto-slab (>= 1.100263+20170512-2),
+               python3-all,
+               python3-pytest,
+               python3-setuptools,
+               python3-sphinx,
+               ruby-sass,
+               woff2
+Rules-Requires-Root: no
+Standards-Version: 4.6.0
+Homepage: https://github.com/readthedocs/sphinx_rtd_theme
+Vcs-Git: https://salsa.debian.org/python-team/packages/sphinx-rtd-theme.git
+Vcs-Browser: https://salsa.debian.org/python-team/packages/sphinx-rtd-theme
+
+Package: sphinx-rtd-theme-common
+Architecture: all
+Depends: fonts-font-awesome, fonts-lato, ${misc:Depends}
+Description: sphinx theme from readthedocs.org (common files)
+ This mobile-friendly sphinx theme was initially created for readthedocs.org,
+ but can be incorporated in any project.
+ .
+ Among other things, it features a left panel with a browseable table of
+ contents, and a search bar.
+ .
+ This package contains the common files used by the theme.
+
+Package: python3-sphinx-rtd-theme
+Architecture: all
+Depends: sphinx-rtd-theme-common (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends}
+Description: sphinx theme from readthedocs.org (Python 3)
+ This mobile-friendly sphinx theme was initially created for readthedocs.org,
+ but can be incorporated in any project.
+ .
+ Among other things, it features a left panel with a browseable table of
+ contents, and a search bar.
+ .
+ This is the Python 3 version of the package.

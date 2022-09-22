@@ -1,0 +1,33 @@
+From: Dmitry Shachnev <mitya57@debian.org>
+Date: Fri, 29 Jun 2018 16:58:36 +0300
+Subject: Make it possible to run upstream tests
+
+- Do not use readthedocs-sphinx-ext, it is not packaged.
+- Point to local version of sphinx_rtd_theme.
+---
+ tests/util.py | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/tests/util.py b/tests/util.py
+index c9fdcc1..38fe839 100644
+--- a/tests/util.py
++++ b/tests/util.py
+@@ -34,8 +34,8 @@ def build(root, builder='html', **kwargs):
+     confoverrides['html_theme'] = 'sphinx_rtd_theme'
+     extensions = confoverrides.get('extensions', [])
+     extensions.append('sphinx_rtd_theme')
+-    extensions.append('readthedocs_ext.readthedocs')
+     confoverrides['extensions'] = extensions
++    confoverrides['html_theme_path'] = [os.path.abspath('../../..')]
+     kwargs['confoverrides'] = confoverrides
+ 
+     try:
+@@ -55,7 +55,6 @@ def build(root, builder='html', **kwargs):
+ 
+ 
+ def build_all(root, **kwargs):
+-    for builder in ['html', 'singlehtml', 'readthedocs', 'readthedocsdirhtml',
+-                    'readthedocssinglehtml', 'readthedocssinglehtmllocalmedia']:
++    for builder in ['html', 'singlehtml']:
+         with build(root, builder, **kwargs) as ret:
+             yield ret

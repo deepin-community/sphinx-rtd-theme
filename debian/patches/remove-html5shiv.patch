@@ -1,0 +1,22 @@
+From: Dmitry Shachnev <mitya57@debian.org>
+Date: Wed, 16 Dec 2020 20:50:55 +0300
+Subject: Remove html5shiv dependency
+
+---
+ sphinx_rtd_theme/layout.html | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/sphinx_rtd_theme/layout.html b/sphinx_rtd_theme/layout.html
+index 1d70119..0f89144 100644
+--- a/sphinx_rtd_theme/layout.html
++++ b/sphinx_rtd_theme/layout.html
+@@ -61,9 +61,6 @@
+ 
+   {#- JAVASCRIPTS #}
+   {%- block scripts %}
+-  <!--[if lt IE 9]>
+-    <script src="{{ pathto('_static/js/html5shiv.min.js', 1) }}"></script>
+-  <![endif]-->
+   {%- if not embedded %}
+   {# XXX Sphinx 1.8.0 made this an external js-file, quick fix until we refactor the template to inherert more blocks directly from sphinx #}
+     {%- if sphinx_version_info >= (1, 8) -%}

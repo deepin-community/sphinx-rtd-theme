@@ -1,0 +1,67 @@
+From: Dmitry Shachnev <mitya57@debian.org>
+Date: Sun, 23 Aug 2020 17:59:25 +0300
+Subject: Replace webpack-style imports with normal ones
+
+The ~ syntax is only supported by webpack, which we do not use:
+https://github.com/webpack-contrib/sass-loader#resolving-import-at-rules
+---
+ src/sass/_theme_variables.sass | 2 +-
+ src/sass/badge_only.sass       | 4 ++--
+ src/sass/theme.sass            | 6 +++---
+ 3 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/src/sass/_theme_variables.sass b/src/sass/_theme_variables.sass
+index d9a5310..5b47605 100644
+--- a/src/sass/_theme_variables.sass
++++ b/src/sass/_theme_variables.sass
+@@ -2,7 +2,7 @@
+ // that are set in wyrm_core/wy_variables.sass. You'll find wyrm in bower_components if you're looking
+ // for a reference.
+ 
+-$fa-font-path:                        "~font-awesome/fonts"
++$fa-font-path:                        "../fonts"
+ $static-img:                          "../img/"
+ 
+ $nav-content-width:                   800px
+diff --git a/src/sass/badge_only.sass b/src/sass/badge_only.sass
+index 2b09416..b8cdac3 100644
+--- a/src/sass/badge_only.sass
++++ b/src/sass/badge_only.sass
+@@ -8,8 +8,8 @@ $border-box-sizing: false !default
+ 
+ @import wyrm_core/wy_variables
+ @import theme_variables
+-@import ~bourbon/app/assets/stylesheets/bourbon
+-@import ~bourbon-neat/app/assets/stylesheets/neat
++@import bourbon
++@import neat
+ @import wyrm_core/mixin
+ @import wyrm_core/grid_settings
+ @import _theme_badge_fa
+diff --git a/src/sass/theme.sass b/src/sass/theme.sass
+index 73e77e4..3330736 100644
+--- a/src/sass/theme.sass
++++ b/src/sass/theme.sass
+@@ -13,11 +13,11 @@
+ @import theme_variables
+ 
+ // bourbon.io framework
+-@import ~bourbon/app/assets/stylesheets/bourbon
++@import bourbon
+ 
+ // Bourbon.io/neat framework, with some default media queries
+ @import wyrm_core/grid_settings
+-@import ~bourbon-neat/app/assets/stylesheets/neat
++@import neat
+ // Some corrections for neat
+ @import wyrm_core/neat_extra
+ 
+@@ -28,7 +28,7 @@
+ @import wyrm_core/mixin
+ 
+ // Font Awesome with wyrm extras
+-@import ~font-awesome/scss/font-awesome
++@import font-awesome
+ @import wyrm_core/font_icon_defaults
+ 
+ // Wyrm core styles used in this theme

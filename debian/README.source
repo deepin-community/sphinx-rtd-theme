@@ -1,0 +1,20 @@
+The `debian/missing-sources` directory contains the SASS sources needed to
+build the theme CSS.
+
+The procedure for updating them is as follows:
+
+- Install the latest versions of node.js and npm.
+- Install the JavaScript dependencies using `npm install`.
+- Copy `bourbon`, `bourbon-neat` and `wyrm` directories from `node_modules`
+  to `debian/missing-sources`.
+
+The following components are copied:
+
+Name         | Website                       | WNPP bug | Currently used version
+------------ | ----------------------------- | -------- | ----------------------
+bourbon      | https://www.bourbon.io/       | #892811  | 4.3.4
+bourbon-neat | https://neat.bourbon.io/      |          | 1.9.1
+wyrm         | https://github.com/snide/wyrm |          | 1.0.9
+
+Note that only the SASS files and the corresponding documentation are copied,
+not the other files.

@@ -1,0 +1,213 @@
+sphinx-rtd-theme (1.0.0+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update debian/watch to work with new GitHub URLs.
+  * Remove fonts from Files-Excluded. That directory is not included in
+    upstream git repository since 0.5.0.
+  * Rebase patches for the new release.
+  * Add a patch to fix indentation error from sass.
+  * Remove old transitional empty files: Inconsolata-*.ttf.
+  * Bump Standards-Version to 4.6.0, no changes needed.
+  * Override one more Lintian warning about webpack.prod.js.
+  * Declare Rules-Requires-Root: no.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 15 Sep 2021 17:17:44 +0300
+
+sphinx-rtd-theme (0.5.1+dfsg-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/control: Update Maintainer field with new Debian Python Team
+    contact address.
+  * d/control: Update Vcs-* fields with new Debian Python Team Salsa
+    layout.
+
+  [ Dmitry Shachnev ]
+  * New upstream release.
+  * Remove node-html5shiv dependency, it was only needed for IE 8.
+    - Add html5shiv{,-printshiv}.min.js as dummy empty files.
+  * Bump Standards-Version to 4.5.1, no changes needed.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 05 Jan 2021 21:38:24 +0300
+
+sphinx-rtd-theme (0.5.0+dfsg-1) unstable; urgency=medium
+
+  * Exclude some generated files from the tarball.
+  * New upstream release.
+  * Rebase fonts-only-ttf-woff2.patch.
+  * Update debian/missing-sources for the new release.
+  * Update build code in debian/rules for the new release.
+  * Add a patch to replace webpack-style imports with normal ones.
+  * Add a patch to not override Python build commands.
+  * Remove modernizr symlink, add html5shiv symlink.
+  * Override false positive Lintian warning about webpack.prod.js.
+  * Regenerate .mo files from .po files during build.
+  * Update links for fonts-font-awesome 5.0.10+really4.7.0~dfsg-2.
+  * Add GitLab CI configuration file.
+  * Update debian/copyright.
+  * Update to debhelper compat level 13.
+  * Bump Standards-Version to 4.5.0, no changes needed.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Mon, 24 Aug 2020 14:44:20 +0300
+
+sphinx-rtd-theme (0.4.3+dfsg-3) unstable; urgency=medium
+
+  * Drop python2 support; Closes: #938545
+
+ -- Sandro Tosi <morph@debian.org>  Wed, 18 Mar 2020 18:04:55 -0400
+
+sphinx-rtd-theme (0.4.3+dfsg-2) unstable; urgency=medium
+
+  [ Dmitry Shachnev ]
+  * Update Homepage, debian/watch and debian/copyright for another owner
+    change of upstream GitHub repository.
+  * Remove outdated Upstream-Contact field.
+  * Update for fonts-roboto-slab switch from TrueType to OpenType in version
+    1.100263+20170512-2:
+    - Build the WOFF2 version of RobotoSlab font from OTF source.
+    - Stop using the TTF version and replace it with a dummy empty file
+      for compatibility with packages built against older package versions.
+
+  [ Ondřej Nový ]
+  * Use debhelper-compat instead of debian/compat.
+  * Bump Standards-Version to 4.4.1.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Mon, 16 Dec 2019 11:37:15 +0300
+
+sphinx-rtd-theme (0.4.3+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump Standards-Version to 4.3.0, no changes needed.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 23 Feb 2019 15:22:25 +0300
+
+sphinx-rtd-theme (0.4.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Sphinx is now listed in install_requires. Stop recommending it.
+  * Add .gitattributes and docs/make.bat to debian/clean.
+  * Bump Standards-Version to 4.2.1, no changes needed.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 09 Oct 2018 19:12:42 +0300
+
+sphinx-rtd-theme (0.4.0+dfsg-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/control: Set Vcs-* to salsa.debian.org
+  * d/copyright: Use https protocol in Format field
+  * d/watch: Use https protocol
+  * d/control: Remove ancient X-Python-Version field
+  * d/control: Remove ancient X-Python3-Version field
+
+  [ Dmitry Shachnev ]
+  * Use tarballs from GitHub, as they contain the SASS source files.
+  * Exclude built files without source from the tarball.
+  * New upstream release.
+  * Provide missing SASS sources in debian/missing-sources/.
+  * Regenerate CSS files from source during build (closes: #892993).
+  * Document the missing-sources update steps in debian/README.source.
+  * Update Lato and RobotoSlab fonts:
+    - Symlink .ttf variants to the packaged versions.
+    - Generate .woff2 varitants from .ttf during build.
+    - Drop other variants (.eof and .woff).
+    - Use different file names for compatibility with packages built
+      against sphinx-rtd-theme 0.2.4.
+  * Update debian/copyright.
+  * Run upstream tests during build:
+    - Build-depend on pytest and sphinx.
+    - Add a patch to make tests pass in a build environment.
+    - Export LC_ALL=C.UTF-8 to make the Python 3 tests pass.
+  * Sort sphinx-rtd-theme-common.{install,links}.
+  * Add a symlink to the .woff2 version of font-awesome.
+  * Add Inconsolata-{Bold,Regular}.ttf as dummy empty files, to make sure
+    that packages built with sphinx-rtd-theme 0.2.4 do not have dangling
+    symlinks after upgrade.
+  * Revert from using theme-path.patch to lots of symlinks, to make sure
+    that newly built projects do not have these dummy files.
+  * Update debhelper compat level to 11.
+  * Bump Standards-Version to 4.1.5, no changes needed.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 05 Jul 2018 19:36:50 +0300
+
+sphinx-rtd-theme (0.2.4-1) unstable; urgency=medium
+
+  * New upstream version 0.2.4.
+  * Update patches for the new release.
+    - Drop do-not-require-sphinx.patch, applied upstream.
+    - Drop sourcelink-suffix.patch, it was coming from upstream.
+    - Rebase theme-path.patch.
+  * Use HTTPS URL in Vcs-Git field.
+  * Update Homepage and Source URLs to the new upstream repository location.
+  * Bump Standards-Version to 4.0.0, no changes needed.
+  * Bump debhelper compatibility level to 10.
+  * Install README.rst in python3-sphinx-rtd-theme package.
+  * Upload to unstable.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 30 Jun 2017 20:10:39 +0300
+
+sphinx-rtd-theme (0.1.9-2) experimental; urgency=medium
+
+  * Set theme_path to /usr/share/sphinx_rtd_theme.
+    This allows us to stop creating symlinks from real theme path to
+    dist-packages directories, and simplify the package layout.
+  * Add SOURCES.txt and requires.txt from egg-info to debian/clean.
+  * Move the package to Debian Python Modules Team.
+  * Reorder two debian/copyright entries to fix Lintian warning.
+  * d/p/sourcelink-suffix.patch: add compatibility with searchtools of
+    Sphinx 1.5 (backported from upstream).
+  * Bump Standards-Version to 3.9.8, no changes needed.
+  * Upload to experimental because of freeze.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 01 Feb 2017 22:49:46 +0300
+
+sphinx-rtd-theme (0.1.9-1) unstable; urgency=medium
+
+  * Imported Upstream version 0.1.9
+  * d/missing-sources/theme.css: reflect upstream changes.
+  * d/missing-sources/theme.js: new unminified file.
+
+ -- Sébastien Villemot <sebastien@debian.org>  Mon, 28 Sep 2015 22:21:29 +0200
+
+sphinx-rtd-theme (0.1.8-2) unstable; urgency=medium
+
+  * Add sphinx-rtd-theme-common package shipping static files.
+  * Use canonical Vcs-Browser link.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Mon, 27 Jul 2015 21:29:19 +0300
+
+sphinx-rtd-theme (0.1.8-1) unstable; urgency=low
+
+  * Imported Upstream version 0.1.8
+  * d/copyright: reflect upstream changes.
+  * d/p/localize-modernizr.patch: drop patch, applied upstream.
+  * Use system-wide Lato fonts.
+    + d/control: add Depends on fonts-lato.
+    + d/python{,3}-sphinx-rtd-theme.links: add relevant symlinks.
+  * d/control: update Git-* fields to reflect the move to collab-maint.
+  * d/control: set myself as Maintainer and Dmitry Shachnev as Uploader.
+  * Demote Depends on python{,3}-sphinx to a Recommends.
+    + d/p/do-not-require-sphinx.patch: new patch to remove the requirement.
+    + d/rules: tell dh_python to recommend sphinx module. (Closes: #783795)
+
+ -- Sébastien Villemot <sebastien@debian.org>  Wed, 06 May 2015 21:48:02 +0200
+
+sphinx-rtd-theme (0.1.7-1) unstable; urgency=medium
+
+  * Imported Upstream version 0.1.7
+  * Fix debian/watch (use pypi.debian.net redirector).
+  * Use libjs-modernizr instead of linking to an external website.
+    - d/p/localize-modernizr.patch: new patch backported from upstream;
+      replaces the external link with a link to a local copy of modernizr.js
+    - d/missing-sources/modernizr.js: source of minified modernizr.js
+    - d/copyright: document copyright and license of modernizr.js
+    - replace local copy of modernizr.js with a symlink to libjs-modernizr
+    - consequently, add dependency on libjs-modernizr
+    Thanks to David Prévot for crafting the patch. (Closes: #765420)
+  * Bump Standards-Version to 3.9.6, no changes needed.
+
+ -- Sébastien Villemot <sebastien@debian.org>  Sun, 19 Apr 2015 18:34:42 +0200
+
+sphinx-rtd-theme (0.1.6-1) unstable; urgency=low
+
+  * Initial release. (Closes: #756894)
+
+ -- Sébastien Villemot <sebastien@debian.org>  Sun, 03 Aug 2014 11:55:25 +0200

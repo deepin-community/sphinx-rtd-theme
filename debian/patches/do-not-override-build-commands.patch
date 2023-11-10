@@ -8,15 +8,14 @@ We do not use webpack in debian packaging.
  1 file changed, 2 deletions(-)
 
 diff --git a/setup.py b/setup.py
-index 1bd966f..428e090 100644
+index 36a2a98..e42f539 100644
 --- a/setup.py
 +++ b/setup.py
-@@ -97,8 +97,6 @@ setup(
+@@ -90,7 +90,5 @@ setup(
      cmdclass={
          'update_translations': UpdateTranslationsCommand,
          'transifex': TransifexCommand,
 -        'build_assets': WebpackBuildCommand,
 -        'watch': WebpackDevelopCommand,
      },
-     zip_safe=False,
-     packages=['sphinx_rtd_theme'],
+ )

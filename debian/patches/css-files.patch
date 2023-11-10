@@ -1,0 +1,26 @@
+From: Dmitry Shachnev <mitya57@debian.org>
+Date: Sat, 28 Oct 2023 15:30:58 +0300
+Subject: Fix AttributeError when one of css_files is a string
+
+Forwarded: https://github.com/readthedocs/sphinx_rtd_theme/pull/1537
+---
+ sphinx_rtd_theme/layout.html | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/sphinx_rtd_theme/layout.html b/sphinx_rtd_theme/layout.html
+index b572cb6..cfa84a2 100644
+--- a/sphinx_rtd_theme/layout.html
++++ b/sphinx_rtd_theme/layout.html
+@@ -29,7 +29,11 @@
+     <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css" />
+   {%- endif %}
+   {%- for css_file in css_files %}
+-    {{ css_tag(css_file) }}
++    {%- if css_file|attr("filename") %}
++      {{ css_tag(css_file) }}
++    {%- else %}
++      <link rel="stylesheet" href="{{ pathto(css_file, 1)|escape }}" type="text/css" />
++    {%- endif %}
+   {%- endfor %}
+ 
+   {# "extra_css_files" is a theme option and it's always a string #}

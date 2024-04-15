@@ -12,16 +12,18 @@ Build-Depends: debhelper-compat (= 13),
                python3-pytest,
                python3-setuptools,
                python3-sphinx,
+               python3-sphinxcontrib.jquery,
                ruby-sass,
                woff2
 Rules-Requires-Root: no
-Standards-Version: 4.6.0
+Standards-Version: 4.6.2
 Homepage: https://github.com/readthedocs/sphinx_rtd_theme
 Vcs-Git: https://salsa.debian.org/python-team/packages/sphinx-rtd-theme.git
 Vcs-Browser: https://salsa.debian.org/python-team/packages/sphinx-rtd-theme
 
 Package: sphinx-rtd-theme-common
 Architecture: all
+Multi-Arch: foreign
 Depends: fonts-font-awesome, fonts-lato, ${misc:Depends}
 Description: sphinx theme from readthedocs.org (common files)
  This mobile-friendly sphinx theme was initially created for readthedocs.org,

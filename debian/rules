@@ -44,13 +44,3 @@ override_dh_link:
 		ln -sf /usr/share/sphinx_rtd_theme/$$f $(PY3_PATH)/$$f; \
 	done
 	dh_link --remaining-packages  # To make the created symlinks relative
-	# Dummy empty files, to make sure that packages built against older
-	# sphinx-rtd-theme do not have dangling symlinks after upgrade.
-	# RobotoSlab-*.ttf: used up to version 0.4.3+dfsg-1, present in Stretch and Buster.
-	touch debian/sphinx-rtd-theme-common/usr/share/sphinx_rtd_theme/static/fonts/RobotoSlab-Bold.ttf
-	touch debian/sphinx-rtd-theme-common/usr/share/sphinx_rtd_theme/static/fonts/RobotoSlab-Regular.ttf
-	# modernizr.min.js: used up to version 0.4.3+dfsg-3, present in Stretch and Buster.
-	touch debian/sphinx-rtd-theme-common/usr/share/sphinx_rtd_theme/static/js/modernizr.min.js
-	# html5shiv*.js: used only in version 0.5.0+dfsg-1, not present in any stable release.
-	touch debian/sphinx-rtd-theme-common/usr/share/sphinx_rtd_theme/static/js/html5shiv-printshiv.min.js
-	touch debian/sphinx-rtd-theme-common/usr/share/sphinx_rtd_theme/static/js/html5shiv.min.js

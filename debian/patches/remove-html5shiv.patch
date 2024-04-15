@@ -7,10 +7,10 @@ Subject: Remove html5shiv dependency
  1 file changed, 3 deletions(-)
 
 diff --git a/sphinx_rtd_theme/layout.html b/sphinx_rtd_theme/layout.html
-index 1d70119..0f89144 100644
+index c8a3076..cfa84a2 100644
 --- a/sphinx_rtd_theme/layout.html
 +++ b/sphinx_rtd_theme/layout.html
-@@ -61,9 +61,6 @@
+@@ -62,9 +62,6 @@
  
    {#- JAVASCRIPTS #}
    {%- block scripts %}

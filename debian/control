@@ -11,15 +11,16 @@ Build-Depends: debhelper-compat (= 13),
                python3-all,
                python3-pytest,
                python3-setuptools,
-               python3-sphinx,
+               python3-sphinx (>= 6),
                python3-sphinxcontrib.jquery,
                ruby-sass,
                woff2
 Rules-Requires-Root: no
-Standards-Version: 4.6.2
+Standards-Version: 4.7.0
 Homepage: https://github.com/readthedocs/sphinx_rtd_theme
 Vcs-Git: https://salsa.debian.org/python-team/packages/sphinx-rtd-theme.git
 Vcs-Browser: https://salsa.debian.org/python-team/packages/sphinx-rtd-theme
+Testsuite: autopkgtest-pkg-pybuild
 
 Package: sphinx-rtd-theme-common
 Architecture: all
@@ -36,7 +37,8 @@ Description: sphinx theme from readthedocs.org (common files)
 
 Package: python3-sphinx-rtd-theme
 Architecture: all
-Depends: sphinx-rtd-theme-common (= ${binary:Version}),
+Depends: python3-sphinx (>= 8.1.0),
+         sphinx-rtd-theme-common (= ${binary:Version}),
          ${misc:Depends},
          ${python3:Depends}
 Description: sphinx theme from readthedocs.org (Python 3)

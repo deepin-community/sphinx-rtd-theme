@@ -3,7 +3,9 @@ Upstream-Name: Sphinx ReadTheDocs theme
 Source: https://github.com/readthedocs/sphinx_rtd_theme
 Files-Excluded: package-lock.json
                 sphinx_rtd_theme/locale/*/LC_MESSAGES/sphinx.mo
-                sphinx_rtd_theme/static
+                sphinx_rtd_theme/static/css
+                sphinx_rtd_theme/static/js/badge_only.js
+                sphinx_rtd_theme/static/js/theme.js
                 .gitattributes
 
 Files: *
@@ -38,7 +40,7 @@ License: BSD-2-clause
 
 Files: debian/*
 Copyright: 2014 Sébastien Villemot <sebastien@debian.org>
-           2015-2023 Dmitry Shachnev <mitya57@debian.org>
+           2015-2024 Dmitry Shachnev <mitya57@debian.org>
 License: Expat
 
 Files: debian/missing-sources/bourbon/*

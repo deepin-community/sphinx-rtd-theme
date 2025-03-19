@@ -1,3 +1,39 @@
+sphinx-rtd-theme (3.0.2+dfsg-2) unstable; urgency=medium
+
+  [ James Addison ]
+  * Attach sidebar-close handler to current-page links (closes: #1075914).
+
+  [ Dmitry Shachnev ]
+  * Bump python3-sphinx dependency to 8.1.0.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 18 Jan 2025 23:00:54 +0300
+
+sphinx-rtd-theme (3.0.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Do not exclude versions.js_t from the tarball or clean it.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 17 Nov 2024 17:37:30 +0300
+
+sphinx-rtd-theme (3.0.1+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Drop patches, included in the new release:
+    - remove-html5shiv.patch
+    - sphinx-7.3.patch
+  * Refresh tests-configuration.patch.
+  * Bump required python3-sphinx version to 6.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 18 Oct 2024 09:14:49 +0300
+
+sphinx-rtd-theme (2.0.0+dfsg-2) unstable; urgency=medium
+
+  * Backport upstream patch to fix test failure with Sphinx 7.3.
+  * Enable autopkgtests using pybuild.
+  * Bump Standards-Version to 4.7.0, no changes needed.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Mon, 15 Jul 2024 20:03:36 +0300
+
 sphinx-rtd-theme (2.0.0+dfsg-1) unstable; urgency=medium
 
   * New upstream release.
